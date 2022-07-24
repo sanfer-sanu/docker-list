@@ -1,0 +1,22 @@
+---
+version: "2"
+services:
+  emby:
+    image: linuxserver/emby
+    container_name: emby
+    environment:
+      - PUID=100
+      - PGID=100
+      - TZ=America/Chicago
+      - UMASK_SET=022 #optional
+    volumes:
+      - /srv/dev-disk-by-label/containers/emby/config:/config
+      - /srv/dev-disk-by-label/Series:/data/tvshows
+      - /srv/dev-disk-by-label/Movies:/data/movies
+      - /srv/dev-disk-by-label/containers/emby/transcode:/transcode #optional
+      - /srv/dev-disk-by-label/containers/emby/lib:/opt/vc/lib #optional
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+    restart: unless-stopped
+

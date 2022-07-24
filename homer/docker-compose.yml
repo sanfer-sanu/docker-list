@@ -1,0 +1,16 @@
+# docker run -d --name=homer -p 8902:8080 -v /srv/dev-disk-by-label/containers/homer/assets:/www/assets --restart=unless-stopped b4bz/homer:latest
+---
+version: "2"
+services:
+  homer:
+    image: b4bz/homer:latest
+    container_name: homer
+    environment:
+      - UID=100
+      - GID=100
+    volumes:
+      - /srv/dev-disk-by-label/containers/homer/assets:/www/assets
+    ports:
+      - 8902:8080
+    restart: unless-stopped
+
